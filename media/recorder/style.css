@@ -44,6 +44,14 @@
 	background-image: url('resume32.png');
 }
 
+#rrweb-downRecord {
+	 background-image: url('down32.png');
+}
+
+#rrweb-loaddingDown {
+	background-image: url('loading32.gif');
+}
+
 #rrweb-minimizeButton {
 	height: 30px;
 	width: 30px;

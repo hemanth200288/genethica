@@ -257,10 +257,9 @@ function createBaseDiv(mainDivId) {
 	return mainDiv;
 }
 
-function isScriptLoaded(src)
-{
+/*function isScriptLoaded(src) {
     return document.querySelector('script[src="' + src + '"]') ? true : false;
-}
+}*/
 
 /**
  * Load CSS file from path given
@@ -347,12 +346,10 @@ function stopRecord(buttons, recorder) {
 	}
 }
 
-function downRecord() {
-	if (events.length > 2) {
-		changeMainDivSize(80, 0);
+function downRecord(recorder) {
+		//changeMainDivSize(80, 0);
 		logger("I can download the page");
 		recorder.downRecord();
-	}
 }
 
 /**
@@ -376,7 +373,7 @@ function displayPostEditButton() {
 }
 
 function onRecordingComplete() {
-	console.log("Recording is all finsihed");
+	console.log("Recording is all finished");
 	//gifLoadingButton.hide();
 	//displayPostEditButton();
 	//compileDataForDownload();
@@ -506,16 +503,17 @@ pauseStart = 0;
 
 		/*this.postEdButton = new Button(this.config_ui, this.mainDiv, "rrweb-postEdit", "Edit your record", 'media/recorder/edit32.png', this.recordButton);
 		this.postEdButton.createChildButton();
-		this.postEdButton.show();
+		this.postEdButton.show();*/
 		
-		this.downButton = new Button(this.config_ui, this.mainDiv, "rrweb-downRecord", "Download your record", 'media/recorder/down32.png', this.postEdButton);
-		this.downButton.createChildButton();
-		this.downButton.show();
+		this.downButton = new Button(this.config_ui, this.mainDiv, "rrweb-downRecord", "Download your record", this.recordButton);
+		this.downButton.createChildButton(downRecord);
+		this.downButton.hide();
 
-		this.gifLoadingButton = new Button(this.config_ui, this.mainDiv, "rrweb-loadingDown", "Your download is almost ready !", 'media/recorder/loading32.gif', this.recordButton);
-		this.gifLoadingButton.createChildButton();
+		this.gifLoadingButton = new Button(this.config_ui, this.mainDiv, "rrweb-loadingDown", "Your download is almost ready !", this.recordButton);
 		this.gifLoadingButton.setClickable(false);
-		this.gifLoadingButton.show();*/
+		this.gifLoadingButton.hide();
+		this.gifLoadingButton.createChildButton();
+
 		this.recordButton.createMenuButton({recordButton: this.recordButton.button, pauseButton: this.pauseButton}, this.recorder);
 	}
 }
