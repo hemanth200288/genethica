@@ -1,0 +1,60 @@
+#rrweb-mainDivButton {
+	position: absolute;
+	width: 70px;
+	height: 70px;
+}
+
+.rrweb-Buttons {
+	border-radius: 50%;
+	border: none;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	top: 0%;
+}
+
+.rrweb-mainButton {
+	height: 70px;
+	width: 70px;
+	cursor: move;
+}
+
+.rrweb-childButton {
+	height: 70px;
+	width: 70px;
+	background-color: #fdd03b;
+}
+
+#rrweb-recordButton {
+	background-color: #d92027;
+	background-image: url('camera32.png');
+}
+
+#rrweb-stopButton {
+	background-color: white;
+	background-image: url('recording32.png');
+	border: 1px solid black;
+}
+
+#rrweb-pauseButton {
+	background-image: url('pause32.png');
+}
+
+#rrweb-resumeButton {
+	background-image: url('resume32.png');
+}
+
+#rrweb-minimizeButton {
+	height: 30px;
+	width: 30px;
+	left: -30px;
+	background-color: #1e8ea1;
+}
+
+#rrweb-downloadRecord {
+	height: 70px;
+	width: 70px;
+	background-color: #fdd03b;
+	position: absolute;
+	cursor: pointer;
+}

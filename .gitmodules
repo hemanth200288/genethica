@@ -1,0 +1,4 @@
+[submodule "lib/generic-rrweb-recorder"]
+	path = lib/generic-rrweb-recorder
+	url = https://github.com/Telecom-Paris/generic-rrweb-recorder
+ 
