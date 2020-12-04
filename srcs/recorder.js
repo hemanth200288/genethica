@@ -293,7 +293,7 @@ function startRecord(buttons, recorder) {
 		buttons.recordButton.id = "rrweb-stopButton";
 		
 		buttons.recordButton.onclick = function() {
-			stopRecord({recordButton: buttons.recordButton}, recorder);
+			stopRecord({recordButton: buttons.recordButton, pauseButton: buttons.pauseButton}, recorder);
 		};
 
 		buttons.pauseButton.show();
@@ -308,7 +308,6 @@ function startRecord(buttons, recorder) {
  * When the record is in pause make appear the range bar
  */
 function pauseRecord(buttons, recorder) {
-	console.log("UI paused Button");
 	if (!isDragged) {
 		recorder.pauseRecord();
 		buttons.pauseButton.id = "rrweb-resumeButton";
@@ -343,10 +342,11 @@ function stopRecord(buttons, recorder) {
 		buttons.recordButton.onclick = function () {
 			startRecord(buttons, recorder);
 		};
+		buttons.pauseButton.hide();
 	}
 }
 
-function downRecord(recorder) {
+function downRecord(buttons, recorder) {
 		//changeMainDivSize(80, 0);
 		logger("I can download the page");
 		recorder.downRecord();
@@ -370,13 +370,6 @@ function displayPostEditButton() {
 		changeMainDivSize(80, 0);
 		logger("I can download the page");
 	}
-}
-
-function onRecordingComplete() {
-	console.log("Recording is all finished");
-	//gifLoadingButton.hide();
-	//displayPostEditButton();
-	//compileDataForDownload();
 }
 
 class RecorderUi {
@@ -478,7 +471,7 @@ pauseStart = 0;
 
 	constructor() {
 		this.recorder = new Recorder("lib/generic-rrweb-recorder/", this.config_ui.debug, "mp3");
-		this.recorder.onEncodingComplete(onRecordingComplete);
+		//this.recorder.onEncodingComplete(this.onRecordingComplete);
 		logger("Page has finished Loading, launching generic-rrweb-recorder-ui");
 		// We create a mainDiv in which we will display all menu element as block
 		this.mainDiv = createBaseDiv("rrweb-mainDivButton");
@@ -506,7 +499,7 @@ pauseStart = 0;
 		this.postEdButton.show();*/
 		
 		this.downButton = new Button(this.config_ui, this.mainDiv, "rrweb-downRecord", "Download your record", this.recordButton);
-		this.downButton.createChildButton(downRecord);
+		this.downButton.createChildButton(downRecord, {}, this.recorder);
 		this.downButton.hide();
 
 		this.gifLoadingButton = new Button(this.config_ui, this.mainDiv, "rrweb-loadingDown", "Your download is almost ready !", this.recordButton);
@@ -515,6 +508,15 @@ pauseStart = 0;
 		this.gifLoadingButton.createChildButton();
 
 		this.recordButton.createMenuButton({recordButton: this.recordButton.button, pauseButton: this.pauseButton}, this.recorder);
+		
+		let that = this;
+
+		this.recorder.callbackWhenOnCompleted = function() {
+			console.log("Recording is all finished");
+			that.gifLoadingButton.hide();
+			that.downButton.show();
+			//displayPostEditButton();
+		}
 	}
 }
 
@@ -545,7 +547,6 @@ class Button {
 		this.button = document.createElement("button");
 		this.button.id = id;
 		this.button.title = title;
-		//this.button.style.backgroundImage = getRightLibPath(config, icon, true);
 		this.button.classList.add("rrweb-Buttons");
 		this.width = rightOf != null ? rightOf.getWidth() + 80 : 0;
 	}
