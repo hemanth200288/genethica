@@ -1,8 +1,7 @@
 # Generic-rrweb-recorder
 
-![](https://img.badgesize.io/Telecom-Paris/generic-rrweb-recorder/dev/srcs/recorder.js)
-![](https://img.badgesize.io/Telecom-Paris/generic-rrweb-recorder/dev/min/srcs/recorder.min.js?label=Minified_version)
-![](https://img.badgesize.io/Telecom-Paris/generic-rrweb-recorder/dev/srcs/recorder.js?compression=gzip)
+![](https://img.badgesize.io/Telecom-Paris/generic-rrweb-recorder-ui/master/srcs/recorder-ui.js)
+![](https://img.badgesize.io/Telecom-Paris/generic-rrweb-recorder/master/srcs/recorder-ui.js?compression=gzip)
 
 ### What is generic-rrweb-recorder ?
 
@@ -12,9 +11,7 @@ The advantage compared to a video?
 
 You can copy/paste the text, and the files are extremely light!
 
-Test it [here](https://telecom-paris.github.io/generic-rrweb-recorder/example.html)
-
-If you want to know how it works under the hood, please see [this](docs/how-it-works.md) doc
+Test it [here](https://telecom-paris.github.io/generic-rrweb-recorder-ui/example.html)
 
 ### Cloning this repo
 
@@ -23,7 +20,7 @@ This repo is using submodules.
 Do not forget to clone the repo using ```--recursive``` option
 
 ```
-git clone --recursive https://github.com/Telecom-Paris/generic-rrweb-recorder.git
+git clone --recursive https://github.com/Telecom-Paris/generic-rrweb-recorder-ui.git
 ```
 
 To test it, you need to use a server, due to security reasons.
@@ -35,23 +32,10 @@ Just include a line in the header of your website :
 (or at the bottom of the body if you want your website to load faster)
 
 ```
-<script type="text/javascript" src="path/to/recorder.js"></script>
+<script type="text/javascript" src="path/to/recorder-ui.js"></script>
 ```
 
-If you are looking for the minified version, it can be found under the [min](min/) folder.
-To include the minified version, you can use:
-```
-<script type="text/javascript" src="path/to/recorder.min.js"></script>
-```
-See [here](#the-minified-version) for more info about the minified version.
-
-The script takes care of the rest.
-
-If you decide not to start the script when the page is loaded, you can launch it doing this:
-```
-new Recorder();
-```
-in a script tag
+See the [example](./example.html) page for more info
 
 ### Customize it as you want:
 
@@ -85,11 +69,6 @@ You will find it under the docs folder, in HTML format. ([here](docs/generated-d
 You can also find answers to common questions [here](docs/FAQ.md)
 
 ### The minified version
-
-To make the minified version, you need [Uglifyjs-folder](https://github.com/ionutvmi/uglifyjs-folder).
-
-Once installed, you can use it doing:
-```uglifyjs-folder -e -o min/ srcs/```
 
 ### Licences and credits
 
