@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Edit this record</title> 
+    <!--WaveSurfer js (audio wave)-->
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.timeline.js"></script>
+    <!--Lib to cut audio-->
+    <script src="../lib/simple-mp3-cutter/src/cutter.js"></script>
+    <!--Rezip ressources after edit-->
+    <script src="../lib/jszip/dist/jszip.min.js"></script>
+    <!--Concat parts after post-edition-->
+    <script src="../lib/concatenate-blob/ConcatenateBlobs.js"></script>
+    <!--Replayer lib-->
+    <script src="../lib/rrweb/dist/rrweb.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../lib/rrweb/dist/rrweb.min.css">
+    <!--PostEdition style -->
+    <link rel="stylesheet" href="../media/postEdit/style.css">
+  </head>
+  <body onload="launchRrweb(false)">
+    <main>
+        <div id="overlay">
+            <div id="overlay-content">
+                <img src="../media/recorder/loading.gif" alt="Creating your record">
+                <p>Currently creating your record, please wait...</p>
+            </div>
+        </div>
+        <button class="own_upload_button" onclick="document.getElementById('event-selector').click();">Upload your own events</button>
+        <button class="own_upload_button" onclick="document.getElementById('sound-selector').click();">Upload your own sound</button>
+        <button class="own_upload_button" onclick="loadEventsFromUser()">Load!</button>
+        <input type="file" id="sound-selector" accept=".mp3">
+        <input type="file" id="event-selector" accept=".json">
+        <div id="postEditionWrapper">
+            <div id="replayDiv"></div>
+            <br>
+            <div id="timeline" style="position: relative;">
+                <div id="waveform"></div>
+                <div id="wave-timeline"></div>
+                <canvas id="eventPointBar" class="timeBarCanvas" width="1000" height="100" style="z-index: 2;"></canvas>
+                <canvas id="eventBar" class="timeBarCanvas" width="1000" height="100" style="z-index: 3;"></canvas>
+                <canvas id="postEditBar" class="timeBarCanvas" width="1000" height="100" style="z-index: 4;"></canvas>
+                <br><br>
+                <div id = "controlBar">
+                    <div id="controlBarLeft" style="width: 50%;float: left;">
+                        <div class="divButtonLeft">
+                            <button id="playButton" class="replayerButton" onclick="clickPlayButton()">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M8 5v14l11-7z"/></svg>
+                            </button>
+                        </div>
+                        <div id="soundBar" class="divButtonLeft">
+                            <div id="soundBarIcon" class="divButton">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                            </div>
+                            <input id="sliderBarSound" class="slider" type="range" min="0" value="10" max="10" step="1" oninput="updateStatusSoundIcon(this.value)">
+                        </div>
+                        <div id="textTimer" class="divButton">0:00 / 0:00</div>
+                    </div>
+                    <div id="controlBarRight">
+                        <button class="divButtonRight" onclick="doneButton()">Done</button>
+                    </div>
+                </div>
+                <input data-action="zoom" id="slider" type="range" min="0" max="100" value="0" style="width: 10%">
+            </div>
+      </div>
+    </main>
+    <script src="postEdit.js"></script>
+  </body>
+</html>

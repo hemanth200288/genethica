@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: utils.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: utils.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {config, mainDiv} from './recorder.js';
+export {millisToMinutesAndSeconds, computeTimeBetweenTwoFrames, logger, changeMainDivSize};
+
+let mainDivWidth = 70;
+let mainDivHeight = 70;
+
+/**
+ * Turn milliseconds to minutes and seconds in the following format:
+ * '00:00'
+ * @param {integer} millis number of millis to convert
+ */
+function millisToMinutesAndSeconds(millis) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (seconds &lt; 10 ? '0' : '') + seconds;
+}
+
+/**
+ * Compute time in minute and second between two rrweb events.
+ * Compute doing firstFrame - secondFrame
+ * @param {rrweb-event} firstFrame The first frame
+ * @param {rrweb-event} secondFrame The second frame
+ * @returns {string} String in the format "00:00"
+ */
+function computeTimeBetweenTwoFrames(firstFrame, secondFrame) {
+	logger("Recording time is event[last] - event[0] = " + (firstFrame.timestamp - secondFrame.timestamp));
+	logger("Aka " + millisToMinutesAndSeconds(firstFrame.timestamp - secondFrame.timestamp) + " mn and secs");
+	return millisToMinutesAndSeconds(firstFrame.timestamp - secondFrame.timestamp);
+}
+
+/**
+ * Change the size of the mainDiv
+ * @param {integer} newWidthInPx The will that will be added to the current width
+ * @param {integer} newHeightInPx The new height that will be added to the current height
+ */
+function changeMainDivSize(newWidthInPx, newHeightInPx) {
+	mainDivWidth += newWidthInPx;
+	mainDivHeight += newHeightInPx;
+	mainDiv.style.width = mainDivWidth + "px";
+	mainDiv.style.height = mainDivHeight + "px";
+}
+
+/**
+ * Check if log has been activated and print stringLog if so.
+ * @param {string} String to print if log is activated.
+ */
+function logger(stringLog){
+	if (config.debug) {
+		console.log("generic-rrweb-recorder: " + stringLog);
+	}
+}
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Button.html">Button</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addslashes">addslashes</a></li><li><a href="global.html#areRecordScriptsLoaded">areRecordScriptsLoaded</a></li><li><a href="global.html#arrayValue">arrayValue</a></li><li><a href="global.html#audioParts">audioParts</a></li><li><a href="global.html#buttonPosition">buttonPosition</a></li><li><a href="global.html#changeMainDivSize">changeMainDivSize</a></li><li><a href="global.html#computeTimeBetweenTwoFrames">computeTimeBetweenTwoFrames</a></li><li><a href="global.html#config">config</a></li><li><a href="global.html#createBaseDiv">createBaseDiv</a></li><li><a href="global.html#cssData">cssData</a></li><li><a href="global.html#downButton">downButton</a></li><li><a href="global.html#downRecord">downRecord</a></li><li><a href="global.html#encodingOver">encodingOver</a></li><li><a href="global.html#encodingType">encodingType</a></li><li><a href="global.html#eventBlob">eventBlob</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#gifLoadingButton">gifLoadingButton</a></li><li><a href="global.html#interval">interval</a></li><li><a href="global.html#isActive">isActive</a></li><li><a href="global.html#isDragged">isDragged</a></li><li><a href="global.html#isMenuOpen">isMenuOpen</a></li><li><a href="global.html#isPauseButtonCreated">isPauseButtonCreated</a></li><li><a href="global.html#jsData">jsData</a></li><li><a href="global.html#launchRecord">launchRecord</a></li><li><a href="global.html#loadCss">loadCss</a></li><li><a href="global.html#loadJS">loadJS</a></li><li><a href="global.html#logger">logger</a></li><li><a href="global.html#mainDiv">mainDiv</a></li><li><a href="global.html#makeElementMovable">makeElementMovable</a></li><li><a href="global.html#millisToMinutesAndSeconds">millisToMinutesAndSeconds</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#pauseButton">pauseButton</a></li><li><a href="global.html#pauseRecord">pauseRecord</a></li><li><a href="global.html#pauseReplayer">pauseReplayer</a></li><li><a href="global.html#readTextFile">readTextFile</a></li><li><a href="global.html#recordButton">recordButton</a></li><li><a href="global.html#recorder">recorder</a></li><li><a href="global.html#recorderState">recorderState</a></li><li><a href="global.html#recStream">recStream</a></li><li><a href="global.html#resumeRecord">resumeRecord</a></li><li><a href="global.html#saveAs">saveAs</a></li><li><a href="global.html#sliderBar">sliderBar</a></li><li><a href="global.html#soundBlob">soundBlob</a></li><li><a href="global.html#stopRecord">stopRecord</a></li><li><a href="global.html#textData">textData</a></li><li><a href="global.html#textTime">textTime</a></li><li><a href="global.html#totalTime">totalTime</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Wed Sep 09 2020 16:21:06 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

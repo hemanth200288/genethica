@@ -11,7 +11,7 @@ The advantage compared to a video?
 
 You can copy/paste the text, and the files are extremely light!
 
-Test it [here](https://telecom-paris.github.io/generic-rrweb-recorder-ui/example.html)
+Test it [here](https://telecom-paris.github.io/generic-rrweb-recorder-ui/example/)
 
 ### Cloning this repo
 
@@ -35,7 +35,7 @@ Just include a line in the header of your website :
 <script type="text/javascript" src="path/to/recorder-ui.js"></script>
 ```
 
-See the [example](./example.html) page for more info
+See the [example](./example/index.html) page for more info
 
 ### Customize it as you want:
 
@@ -71,18 +71,6 @@ You can also find answers to common questions [here](docs/FAQ.md)
 ### The minified version
 
 ### Licences and credits
-
-This project use the following libraries:
-
-[rrweb](https://github.com/rrweb-io/rrweb)
-
-[jszip](https://github.com/Stuk/jszip)
-
-[WebAudioRecorder](https://github.com/higuma/web-audio-recorder-js)
-
-[ConcatenateBlob](https://github.com/muaz-khan/ConcatenateBlobs)
-
-[simple-mp3-cutter](https://github.com/lubenard/simple-mp3-cutter)
 
 Because the images we use are free, here is the websites where we found them:
 - https://www.flaticon.com
